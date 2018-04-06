@@ -1,2 +1,23 @@
-<p><%= todo.text %></p>
-<%= link_to "Delete",project_todo_path(@project, todo.id), method: :delete %>
+<div class="row clearfix">
+  <% if todo.completed? %>
+    <div class="complete">
+      <%= link_to "Отметить как выплненной", complete_project_todo_path(@project, todo.id), method: :patch %>
+    </div>
+    <div class="todo">
+      <p><strike style="opacity: 0.4;"><%= todo.text %></strike></p>
+    </div>
+    <div class="trash">
+      <%= link_to "Удалить",project_todo_path(@project, todo.id), method: :delete %>
+    </div>
+    <% else %>
+    <div class="complete">
+      <%= link_to "Отметить как выплненной", complete_project_todo_path(@project, todo.id), method: :patch %>
+    </div>
+    <div class="todo">
+      <p><%= todo.text %></p>
+    </div>
+    <div class="trash">
+      <%= link_to "Удалить", project_todo_path(@project, todo.id), method: :delete %>
+    </div>
+  <% end %>
+</div>
